@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, input } from '@angular/core';
 import { UserService } from '../../services/user-service';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../services/shared-service';
@@ -11,13 +11,22 @@ import { DialogService } from '../../services/dialog-service';
   styleUrl: './add-user-component.scss'
 })
 export class AddUserComponent {
-
+ @Input() data: any;
   close!: (result?: boolean) => void;
 
   name = "";
+  user_id = 0;
   userService = inject(UserService);
   // sharedService = inject(SharedService);
   dialogService = inject(DialogService);
+
+  ngOnInit() {
+    if (this.data) {      
+      this.name = this.data.user.name;
+      this.user_id = this.data.user.id;
+    }
+  }
+
 
   onSubmit() {
     if (this.name) {
@@ -27,6 +36,25 @@ export class AddUserComponent {
       this.userService.createUser(user).subscribe({
         next: (res) => {
           console.log('User created:', res);
+          this.closed(true); // Ferme le dialogue avec un résultat
+        },
+        error: (err) => {
+          console.error('Error creating user:', err);
+        }
+      });
+      this.name = ''; // Réinitialise le champ de saisie
+    }
+  }
+
+
+  onUpdate() {
+    if (this.name && this.user_id) {
+      const user = {
+        name: this.name
+      }
+      this.userService.updateUser(this.user_id, user).subscribe({
+        next: (res) => {
+          console.log('User updated:', res);
           this.closed(true); // Ferme le dialogue avec un résultat
         },
         error: (err) => {
@@ -47,6 +75,6 @@ export class AddUserComponent {
     if (typeof this.close === 'function') {
       this.close(isResult);
     }
-
   }
+
 }

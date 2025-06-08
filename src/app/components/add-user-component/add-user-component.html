@@ -2,7 +2,7 @@
       <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-xl font-bold mb-4">Créer un nouvel utilisateur</h2>
         
-        <form (ngSubmit)="onSubmit()" class="space-y-4">
+        <form class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
             <input
@@ -11,7 +11,7 @@
               name="name"
               type="text"
               required
-              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
               placeholder="Entrez le nom"
             >
           </div>
@@ -20,17 +20,27 @@
             <button
               type="button"
               (click)="onCancel()"
-              class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+              class="px-4 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50"
             >
               Annuler
             </button>
-            <button
-              type="submit"
+            @if (!user_id) {
+
+              <button
               [disabled]="!name"
-              class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:bg-gray-400"
-            >
+              class="px-4 py-2 bg-blue-400 text-white rounded-full hover:bg-blue-500 disabled:bg-gray-400"
+              (click)="onSubmit()">
               Créer
             </button>
+          } @else {
+
+            <button
+            [disabled]="!name"
+            class="px-4 py-2 bg-blue-400 text-white rounded-full hover:bg-blue-500 disabled:bg-gray-400"
+            (click)="onUpdate()">
+            Modifier
+          </button>
+        }
           </div>
         </form>
       </div>

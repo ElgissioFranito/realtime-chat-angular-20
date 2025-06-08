@@ -34,12 +34,33 @@ export class ListUser {
     });
   }
 
+  getInitialUsers(username: string): string {
+    return username.charAt(0).toUpperCase();
+  }
+
   onCreateUser() {
     this._dialogService.open(AddUserComponent
     ).afterClosed.subscribe(result => {
-      
+
       if (result) {
-          this.getUsers();
+        this.getUsers();
+      }
+    });
+  }
+
+  onDeleteUser(user_id: number) {
+    this.userService.delete(user_id)
+      .subscribe((user) => {
+        this.getUsers();
+      });
+  }
+
+  onUpdateUser(user: UserInterface) {
+    this._dialogService.open(AddUserComponent, {
+      user
+    }).afterClosed.subscribe(result => {
+      if (result) {
+        this.getUsers();
       }
     });
   }

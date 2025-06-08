@@ -8,9 +8,9 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root'
 })
 export class UserService {
-  
+
   private readonly API_URL = environment.apiUrl;
-  
+
   private readonly GET_USERS = `${this.API_URL}/users`;
 
   http = inject(HttpClient);
@@ -18,8 +18,17 @@ export class UserService {
   getUsers(): Observable<UserInterface[]> {
     return this.http.get<UserInterface[]>(this.GET_USERS);
   }
-  
-  createUser(user:any): Observable<UserInterface> {
-    return this.http.post<UserInterface>(this.GET_USERS,user);
+
+  createUser(user: any): Observable<UserInterface> {
+    return this.http.post<UserInterface>(this.GET_USERS, user);
   }
+
+  updateUser(id: number, user: any): Observable<UserInterface> {
+    return this.http.put<UserInterface>(this.GET_USERS + "/" + id, user);
+  }
+
+  delete(userId: number): Observable<UserInterface> {
+    return this.http.delete<UserInterface>(this.GET_USERS + `/${userId}`);
+  }
+
 }

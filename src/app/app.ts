@@ -7,7 +7,7 @@ import { DialogOutletComponent } from './dialog-outlet/dialog-outlet.component';
 
 @Component({
   selector: 'app-root',
-  imports: [ListUser, AddUserComponent, DialogOutletComponent],
+  imports: [ListUser, DialogOutletComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
