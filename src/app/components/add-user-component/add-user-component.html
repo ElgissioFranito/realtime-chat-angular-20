@@ -1,0 +1,37 @@
+    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-xl font-bold mb-4">Créer un nouvel utilisateur</h2>
+        
+        <form (ngSubmit)="onSubmit()" class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+            <input
+              id="name"
+              [(ngModel)]="name"
+              name="name"
+              type="text"
+              required
+              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Entrez le nom"
+            >
+          </div>
+          
+          <div class="flex justify-end space-x-2">
+            <button
+              type="button"
+              (click)="onCancel()"
+              class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+            >
+              Annuler
+            </button>
+            <button
+              type="submit"
+              [disabled]="!name"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:bg-gray-400"
+            >
+              Créer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>

@@ -1,1 +1,48 @@
-<p>list-user works!</p>
+<div class="container mx-auto p-4 flex flex-col gap-4 items-center">
+    <div class="flex justify-between items-center mb-4 w-full">
+        <h1 class="text-xl font-bold">{{ usersCount() }} utilisateurs</h1>
+        <button class="border rounded p-1 text-white bg-blue-400 px-2" (click)="onCreateUser()"> Create User
+        </button>
+    </div>
+
+    @if (users()) {
+    <div class="w-full">
+        @if (users().length === 0) {
+        <div class="text-gray-500 text-center py-4">
+            Aucun utilisateur trouvé
+        </div>
+        }
+
+        <div class="flex flex-col gap-2">
+            @for (user of users(); track $index) {
+            <div class="flex items-center p-2 border-2 border-gray-300 rounded-lg hover:bg-blue-200 hover:shadow-md transition">
+                <div
+                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+                    F
+                </div>
+                <div class="ml-3 flex-1">
+                    <div class="font-medium">{{ user.name }}</div>
+                    <div class="text-xs text-gray-400">Mardi 12 Mai 2025</div>
+                    <div class="text-sm text-gray-600">033 45 824 55</div>
+                </div>
+                <button class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </button>
+            </div>
+            }
+        </div>
+
+    </div>
+    }
+
+    @else {
+    <ng-template #loading>
+        <div class="text-center py-4">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+            <p class="mt-2">Chargement...</p>
+        </div>
+    </ng-template>
+    }
+</div>
