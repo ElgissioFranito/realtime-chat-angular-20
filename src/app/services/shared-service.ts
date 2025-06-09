@@ -5,6 +5,6 @@ import { Injectable, signal } from '@angular/core';
 })
 export class SharedService {
 
-  // isCreateUserDialog = signal(false);
+  isOnListRoom = signal(true);
 
 }

@@ -1,0 +1,58 @@
+<div class="w-96 p-4 bg-white rounded-lg shadow-md">
+  <div class="flex items-center mb-4">
+
+    <button (click)="onRoomList()" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg w-6 h-6 flex items-center justify-center mr-2"
+      aria-label="Add">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="white" />
+        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          d="M12 8v8m-4-4h8" />
+      </svg>
+    </button>
+    <div class="w-10 h-10 bg-gray-300 rounded-full mr-2"></div>
+    <div>
+      <p class="text-sm font-medium">Doctor Freud.ai</p>
+      <p class="text-xs text-gray-500">GPT-6 | LLM | 11B left this month</p>
+    </div>
+  </div>
+  <div class="space-y-4">
+    <div class="p-2 bg-gray-100 rounded">
+      <p>Hey Doc! Good Morning! Ohaiyo! What's my mental health progress for this month? Is my health improving or not?
+        Plz analyze the data with your AIML Magic! ✨</p>
+      <p class="text-xs text-gray-500 text-right">12:22 PM</p>
+    </div>
+    <div class="p-2 bg-green-100 rounded">
+      <p>Hello, Shinomiya! Your Freud Score has increased to 88 last month. That's almost +255% increase 6 months ago!
+      </p>
+      <div class="mt-2">
+        <canvas class="w-full h-32 bg-yellow-400" id="freudChart"></canvas>
+      </div>
+      <p class="text-xs text-gray-500 text-right">Dr. Freud is thinking...</p>
+    </div>
+    <div class="flex items-center justify-end space-x-2">
+      <button class="p-2 bg-gray-200 rounded">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+          <path d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm8-6a6 6 0 100 12 6 6 0 000-12z" />
+        </svg>
+      </button>
+      <button class="p-2 bg-gray-200 rounded">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm10 0H6v12h8V4z" />
+        </svg>
+      </button>
+      <button class="p-2 bg-gray-200 rounded">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12z" />
+          <path d="M10 6a2 2 0 100 4 2 2 0 000-4z" />
+        </svg>
+      </button>
+      <input type="text" class="flex-1 p-2 border rounded max-w-44" placeholder="Send your message to Dr. Freud AI..." />
+      <button class="p-2 bg-green-500 text-white rounded">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 12l-3-3 1.5-1.5L9 10.5l2.5-2.5L13 8l-4 4z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

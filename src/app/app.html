@@ -1,5 +1,24 @@
 <div class="min-h-screen min-w-screen bg-gradient-to-tr from-blue-100 to-pink-100 rounded-lg shadow-lg">
-  <app-list-user/>
+  <app-list-user />
+  <div class="messages fixed bottom-8 right-8 flex flex-col items-end gap-2">
+
+    @if (isDisplayMessenger()) {
+      @if (sharedService.isOnListRoom()) {
+        <app-list-room-component />
+      } @else {
+        <app-private-message-component />
+      }
+    }
+    <button
+    (click)="toggleMessenger()"
+      class="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg"
+      aria-label="Add">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="white" />
+        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 8v8m-4-4h8" />
+      </svg>
+    </button>
+  </div>
 </div>
 
 <app-dialog-outlet />

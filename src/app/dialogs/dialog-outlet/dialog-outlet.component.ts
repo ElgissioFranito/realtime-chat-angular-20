@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, ViewContainerRef } from '@angular/core';
-import { DialogService } from '../services/dialog-service';
+import { DialogService } from '../../services/dialog-service';
 
 @Component({
   selector: 'app-dialog-outlet',

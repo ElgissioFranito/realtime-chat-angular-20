@@ -4,7 +4,7 @@ import { UserService } from '../../services/user-service';
 import { UserInterface } from '../../interfaces/user-interface';
 import { SharedService } from '../../services/shared-service';
 import { DialogService } from '../../services/dialog-service';
-import { AddUserComponent } from '../../components/add-user-component/add-user-component';
+import { AddUserComponent } from '../../dialogs/add-user-component/add-user-component';
 
 @Component({
   selector: 'app-list-user',
