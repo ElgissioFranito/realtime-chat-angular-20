@@ -10,9 +10,9 @@ import { SharedService } from '../../services/shared-service';
 export class ListRoomComponent {
 
   conversations = [
-    { title: "Can't Sleep, Possibly Insomnia...", time: "3m", count: "2" },
-    { title: "My BF just left today...", time: "3m", count: "" },
-    { title: "Best Meditation App? I ne...", time: "3m", count: "2" },
+    { title: "Can't Sleep, Possibly Insomnia or Anxiety. Can you arrive on time?", time: "3m", count: "2" },
+    { title: "My BF just left today", time: "3m", count: "" },
+    { title: "Best Meditation App? I need some help", time: "3m", count: "2" },
     { title: "How to be a better person?", time: "3m", count: "2" },
     { title: "How to not think about st...", time: "3m", count: "" },
     { title: "How to be calm & stoic", time: "3m", count: "" },

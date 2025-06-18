@@ -1,20 +1,23 @@
 import { Component, inject, signal } from '@angular/core';
-import { Observable, timeout } from 'rxjs';
-import { UserService } from '../../services/user-service';
 import { UserInterface } from '../../interfaces/user-interface';
 import { SharedService } from '../../services/shared-service';
 import { DialogService } from '../../services/dialog-service';
 import { AddUserComponent } from '../../dialogs/add-user-component/add-user-component';
+import { FormsModule } from '@angular/forms';
+import { UserService } from '../../services/api/user-service';
 
 @Component({
   selector: 'app-list-user',
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './list-user.html',
   styleUrl: './list-user.scss'
 })
 export class ListUser {
   usersCount = signal(0);
   users = signal<UserInterface[]>([]);
+  searchTerm ="";
 
   sharedService = inject(SharedService);
   userService = inject(UserService);
@@ -48,14 +51,16 @@ export class ListUser {
     });
   }
 
-  onDeleteUser(user_id: number) {
+  onDeleteUser(e: Event, user_id: number) {
+    e.stopPropagation();
     this.userService.delete(user_id)
       .subscribe((user) => {
         this.getUsers();
       });
   }
 
-  onUpdateUser(user: UserInterface) {
+  onUpdateUser(e: Event, user: UserInterface) {
+    e.stopPropagation();
     this._dialogService.open(AddUserComponent, {
       user
     }).afterClosed.subscribe(result => {
@@ -63,5 +68,14 @@ export class ListUser {
         this.getUsers();
       }
     });
+  }
+
+  onSearch(){}
+
+  onClickUser(e: Event, user: UserInterface) {
+    e.stopPropagation();
+    this.sharedService.isOnListRoom.set(false);
+    this.sharedService.isDisplayMessenger.set(true);
+    this.sharedService.selectedUser.set(user);
   }
 }

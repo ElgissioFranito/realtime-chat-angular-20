@@ -1,8 +1,7 @@
 import { Component, inject, Input, input } from '@angular/core';
-import { UserService } from '../../services/user-service';
 import { FormsModule } from '@angular/forms';
-import { SharedService } from '../../services/shared-service';
 import { DialogService } from '../../services/dialog-service';
+import { UserService } from '../../services/api/user-service';
 
 @Component({
   selector: 'app-add-user-component',

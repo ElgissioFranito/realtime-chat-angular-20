@@ -1,13 +1,14 @@
 <div class="w-96 p-4 bg-white rounded-lg shadow-md">
-    <h2 class="text-xl font-bold mb-4">All AI Conversations</h2>
+    <h2 class="text-xl font-bold mb-4">Conversations</h2>
     <ul class="space-y-2 h-96 overflow-y-auto">
         @for (conversation of conversations; track $index) {
         <li class="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 cursor-pointer transition-all"
         (click)="viewMessenger()">
             <div class="w-10 h-10 bg-gray-300 rounded-full mr-2"></div>
             <div>
-                <p class="text-sm font-medium">{{ conversation.title }}</p>
-                <p class="text-xs text-gray-500">{{ conversation.time }} ago</p>
+                <p class="text-sm font-medium truncate max-w-60">Nom de correspondant</p>
+                <p class="text-sm font-medium text-gray-500 truncate max-w-60">{{ conversation.title }}</p>
+                <p class="text-xs text-gray-500 truncate max-w-60">{{ conversation.time }} ago</p>
             </div>
             <span class="ml-auto text-xs text-gray-400">{{ conversation.count }}</span>
         </li>

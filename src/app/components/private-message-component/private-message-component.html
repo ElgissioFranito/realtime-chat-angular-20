@@ -1,13 +1,15 @@
 <div class="w-96 p-4 bg-white rounded-lg shadow-md">
   <div class="flex items-center mb-4">
 
-    <button (click)="onRoomList()" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg w-6 h-6 flex items-center justify-center mr-2"
+    <button (click)="onRoomList()"
+      class="bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg w-6 h-6 flex items-center justify-center mr-2"
       aria-label="Add">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="white" />
-        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          d="M12 8v8m-4-4h8" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3">
+        <path fill-rule="evenodd"
+          d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
+          clip-rule="evenodd" />
       </svg>
+
     </button>
     <div class="w-10 h-10 bg-gray-300 rounded-full mr-2"></div>
     <div>
@@ -47,7 +49,8 @@
           <path d="M10 6a2 2 0 100 4 2 2 0 000-4z" />
         </svg>
       </button>
-      <input type="text" class="flex-1 p-2 border rounded max-w-44" placeholder="Send your message to Dr. Freud AI..." />
+      <input type="text" class="flex-1 p-2 border rounded max-w-44"
+        placeholder="Send your message to Dr. Freud AI..." />
       <button class="p-2 bg-green-500 text-white rounded">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 12l-3-3 1.5-1.5L9 10.5l2.5-2.5L13 8l-4 4z" />
