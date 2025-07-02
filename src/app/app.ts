@@ -44,7 +44,7 @@ export class App {
     // Subscribe to incoming messages
     this.messageSubscription = this.webSocketService.messages$.subscribe({
       next: (msg) => {
-        // Messages are handled in the service and exposed via Observable
+        // console.log('Message received:', msg);
       },
       error: (err) => console.error('WebSocket error:', err)
     });

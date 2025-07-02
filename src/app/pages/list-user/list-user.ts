@@ -5,6 +5,8 @@ import { DialogService } from '../../services/dialog-service';
 import { AddUserComponent } from '../../dialogs/add-user-component/add-user-component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/api/user-service';
+import { WebSocketService } from '../../services/api/web-socket-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-user',
@@ -15,23 +17,52 @@ import { UserService } from '../../services/api/user-service';
   styleUrl: './list-user.scss'
 })
 export class ListUser {
+  userConnected = signal<UserInterface | null>(null);
   usersCount = signal(0);
   users = signal<UserInterface[]>([]);
-  searchTerm ="";
+  searchTerm = "";
 
   sharedService = inject(SharedService);
   userService = inject(UserService);
   _dialogService = inject(DialogService);
 
+  webSocketService = inject(WebSocketService);
+  private userJoinedSubscription: Subscription | null = null;
+  private userLeftSubscription: Subscription | null = null;
+
   ngOnInit() {
+    // Subscribe to user joined event
+    this.userJoinedSubscription = this.webSocketService.userJoined$.subscribe({
+      next: (user) => {
+        this.getUsers();
+      },
+      error: (err) => console.error('WebSocket error:', err),
+      complete: () => console.log('WebSocket connection closed')
+    });
+
+    // Subscribe to user left event
+    this.userLeftSubscription = this.webSocketService.userLeft$.subscribe({
+      next: (userId) => {
+        this.getUsers();
+      },
+      error: (err) => console.error('WebSocket error:', err),
+      complete: () => console.log('WebSocket connection closed')
+    });
+
     this.getUsers();
   }
 
   getUsers() {
     this.userService.getUsers().subscribe({
-      next: (us) => {
-        this.users.set(us);
-        console.log(this.users());
+      next: (users : UserInterface[]) => {
+        this.users.set(users.filter(user => user.id !== this.webSocketService.userId()));
+        const userConnected = users.find(user => user.id === this.webSocketService.userId());
+        console.log('User connected:',  this.webSocketService.userId());
+        if (userConnected) {
+          console.log('User connected:', userConnected);
+          
+          this.userConnected.set(userConnected);
+        }
         this.usersCount.set(this.users().length);
       }
     });
@@ -70,7 +101,7 @@ export class ListUser {
     });
   }
 
-  onSearch(){}
+  onSearch() { }
 
   onClickUser(e: Event, user: UserInterface) {
     e.stopPropagation();
